@@ -1,15 +1,15 @@
 import UIKit
 
-struct ActivitiesTableViewModel {
+struct ActivityTableModel {
     let date: String
-    let activities: [ActivityCellViewModel]
+    let activities: [ActivityCellModel]
 }
 
 class ActivityController: UIViewController {
 
-    private let tableData: [ActivitiesTableViewModel] = {
-        let yesterdayActivities: [ActivityCellViewModel] = [
-            ActivityCellViewModel(
+    private let tableData: [ActivityTableModel] = {
+        let yesterdayActivities: [ActivityCellModel] = [
+            ActivityCellModel(
                 distance: "14.32 км",
                 duration: "2 часа 46 минут",
                 type: "Велосипед",
@@ -19,8 +19,8 @@ class ActivityController: UIViewController {
                 stopTime: "16:31"
             )
         ]
-        let mayActivities: [ActivityCellViewModel] = [
-            ActivityCellViewModel(
+        let mayActivities: [ActivityCellModel] = [
+            ActivityCellModel(
                 distance: "14.32 км",
                 duration: "2 часа 46 минут",
                 type: "Велосипед",
@@ -30,43 +30,59 @@ class ActivityController: UIViewController {
                 stopTime: "16:31"
             )
         ]
-        
+
         return [
-            ActivitiesTableViewModel(date: "Вчера", activities: yesterdayActivities),
-            ActivitiesTableViewModel(date: "Май 2020 года", activities: mayActivities)
+            ActivityTableModel(date: "Вчера", activities: yesterdayActivities),
+            ActivityTableModel(date: "Май 2020 года", activities: mayActivities)
         ]
     }()
 
-    @IBOutlet weak var activitiesTableView: UITableView!
-    @IBOutlet weak var emptyStateView: UIView!
+
+    @IBOutlet weak var activityTable: UITableView!
+    @IBOutlet weak var emptyState: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activitiesTableView.dataSource = self
-        //emptyStateView.isHidden = false
+
+        self.title = "Активности"
+
+        activityTable.register(UINib(nibName: "ActivityCellView", bundle: nil), forCellReuseIdentifier: "ActivityCell")
+
+        enterEmptyState()
     }
 
-    @IBAction func startButton(_ sender: Any) {
-        emptyStateView?.isHidden = true
+    @IBAction func startButtonPress(_ sender: Any) {
+        exitEmptyState()
+    }
+
+    func exitEmptyState() {
+        activityTable.isHidden = false
+        emptyState.isHidden = true
+    }
+    func enterEmptyState() {
+        activityTable.isHidden = true
+        emptyState.isHidden = false
     }
 }
 
-extension ActivityController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return tableData.count
-    }
-    
+extension ActivityController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UILabel()
-        header.font = .boldSystemFont(ofSize: 20)
-        header.text = tableData[section].date
-        return header
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tableData.count
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UILabel()
+        header.font = .boldSystemFont(ofSize: 17)
+        header.text = tableData[section].date
+
+        return header
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableData[section].activities.count
     }
@@ -75,14 +91,23 @@ extension ActivityController: UITableViewDataSource {
     
         let activityData = self.tableData[indexPath.section].activities[indexPath.row]
         
-        let reusableCell = activitiesTableView.dequeueReusableCell(withIdentifier: "ActivityCellViewController", for: indexPath)
-        
-        guard let cell = reusableCell as? ActivityCellViewController else {
+        let reusableCell = activityTable.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath)
+
+        guard let cell = reusableCell as? ActivityCellController else {
             return UITableViewCell()
         }
 
         cell.bind(activityData)
+
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let detailsView = ActivityDetailsController(nibName: "ActivityDetailsView", bundle: nil)
+        detailsView.model = self.tableData[indexPath.section].activities[indexPath.row]
+        
+        navigationController?.pushViewController(detailsView, animated: true)
+    }
 }

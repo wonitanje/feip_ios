@@ -5,7 +5,7 @@ struct ActivityCellModel {
     let duration: String
     let type: String
     let timeAgo: String
-    let icon: UIImage
+    let icon: UIImage?
     let startTime: String
     let stopTime: String
 }
@@ -27,8 +27,9 @@ class ActivityCellController: UITableViewCell {
     func bind(_ model: ActivityCellModel) {
         distanceLabel.text = model.distance
         durationLabel.text = model.duration
+        typeIcon.image = model.icon
+        typeIcon.image = UIImage(systemName: "bicycle.circle.fill")
         typeLabel.text = model.type
         timeAgoLabel.text = model.timeAgo
-        typeIcon.image = model.icon
     }
 }

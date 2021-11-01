@@ -6,7 +6,7 @@ class AuthorizationController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func Authorization(_ sender: Any) {
+    @IBAction func authorize(_ sender: Any) {
         performSegue(withIdentifier: "ActivityTabBarControllerView", sender: nil)
     }
 }

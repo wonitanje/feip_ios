@@ -17,7 +17,7 @@ class ActivityController: UIViewController {
                 duration: "2 часа 46 минут",
                 type: "Велосипед",
                 timeAgo: "14 часов назад",
-                icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
+                icon: UIImage(systemName: "bicycle.circle.fill"),
                 startTime: "14:49",
                 stopTime: "16:31"
             )
@@ -28,7 +28,7 @@ class ActivityController: UIViewController {
                 duration: "2 часа 46 минут",
                 type: "Велосипед",
                 timeAgo: "14 часов назад",
-                icon: UIImage(systemName: "bicycle.circle.fill") ??  UIImage(),
+                icon: UIImage(systemName: "bicycle.circle.fill"),
                 startTime: "14:49",
                 stopTime: "16:31"
             )

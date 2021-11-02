@@ -13,6 +13,8 @@
 		1D98C050272F0327002A4ED8 /* ActivityDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C04F272F0327002A4ED8 /* ActivityDetailsController.swift */; };
 		1D98C052272F13EC002A4ED8 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C051272F13EC002A4ED8 /* RegistrationController.swift */; };
 		1D98C054272FEE38002A4ED8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C053272FEE38002A4ED8 /* CustomTextField.swift */; };
+		1D98C0562731479C002A4ED8 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C0552731479C002A4ED8 /* SecureTextField.swift */; };
+		1D98C0582731492E002A4ED8 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C0572731492E002A4ED8 /* PickerTextField.swift */; };
 		1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4E5C4270A5CCE004A30CA /* AppDelegate.swift */; };
 		1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */; };
 		1DE4E5C9270A5CCE004A30CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4E5C8270A5CCE004A30CA /* ViewController.swift */; };
@@ -31,6 +33,8 @@
 		1D98C04F272F0327002A4ED8 /* ActivityDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsController.swift; sourceTree = "<group>"; };
 		1D98C051272F13EC002A4ED8 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		1D98C053272FEE38002A4ED8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		1D98C0552731479C002A4ED8 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		1D98C0572731492E002A4ED8 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		1DE4E5C1270A5CCE004A30CA /* fefuactivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fefuactivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE4E5C4270A5CCE004A30CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				1D98C04F272F0327002A4ED8 /* ActivityDetailsController.swift */,
 				1D98C04B272EE1D8002A4ED8 /* AuthorizationController.swift */,
 				1D98C053272FEE38002A4ED8 /* CustomTextField.swift */,
+				1D98C0572731492E002A4ED8 /* PickerTextField.swift */,
+				1D98C0552731479C002A4ED8 /* SecureTextField.swift */,
 				1D98C049272EE139002A4ED8 /* ActivityTabBarController.swift */,
 				1E8E876B272C2CBF008177A9 /* ActivityController.swift */,
 				1D98C04D272EE2DC002A4ED8 /* ProfileController.swift */,
@@ -165,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D98C0562731479C002A4ED8 /* SecureTextField.swift in Sources */,
 				1D98C04C272EE1D8002A4ED8 /* AuthorizationController.swift in Sources */,
 				1E8E876C272C2CBF008177A9 /* ActivityController.swift in Sources */,
 				1E8E8771272CE897008177A9 /* ActivityCellController.swift in Sources */,
@@ -176,6 +183,7 @@
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
 				1D98C052272F13EC002A4ED8 /* RegistrationController.swift in Sources */,
 				1D98C04E272EE2DC002A4ED8 /* ProfileController.swift in Sources */,
+				1D98C0582731492E002A4ED8 /* PickerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

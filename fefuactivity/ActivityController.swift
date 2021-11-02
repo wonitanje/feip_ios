@@ -50,7 +50,7 @@ class ActivityController: UIViewController {
 
         activityTableView.dataSource = self
         activityTableView.delegate = self
-        activityTableView.register(UINib(nibName: "ActivityCellView", bundle: nil), forCellReuseIdentifier: "ActivityTableCell")
+        //activityTableView.register(UINib(nibName: "ActivityCellView", bundle: nil), forCellReuseIdentifier: "ActivityTableCell")
     }
     
     func enterEmptyState() {

@@ -10,6 +10,6 @@ class RegistrationController: UIViewController {
     }
 
     @IBAction func register(_ sender: Any) {
-        
+        performSegue(withIdentifier: "ActivityTabBarControllerView", sender: nil)
     }
 }

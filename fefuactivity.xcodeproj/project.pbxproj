@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D98C04C272EE1D8002A4ED8 /* AuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C04B272EE1D8002A4ED8 /* AuthorizationController.swift */; };
+		1D98C052272F13EC002A4ED8 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C051272F13EC002A4ED8 /* RegistrationController.swift */; };
+		1D98C054272FEE38002A4ED8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C053272FEE38002A4ED8 /* CustomTextField.swift */; };
+		1D98C0562731479C002A4ED8 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C0552731479C002A4ED8 /* SecureTextField.swift */; };
+		1D98C0582731492E002A4ED8 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D98C0572731492E002A4ED8 /* PickerTextField.swift */; };
 		1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4E5C4270A5CCE004A30CA /* AppDelegate.swift */; };
 		1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */; };
 		1DE4E5C9270A5CCE004A30CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4E5C8270A5CCE004A30CA /* ViewController.swift */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D98C04B272EE1D8002A4ED8 /* AuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationController.swift; sourceTree = "<group>"; };
+		1D98C051272F13EC002A4ED8 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		1D98C053272FEE38002A4ED8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		1D98C0552731479C002A4ED8 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		1D98C0572731492E002A4ED8 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		1DE4E5C1270A5CCE004A30CA /* fefuactivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fefuactivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE4E5C4270A5CCE004A30CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,9 +67,14 @@
 			isa = PBXGroup;
 			children = (
 				1DE4E5C4270A5CCE004A30CA /* AppDelegate.swift */,
+				1D98C051272F13EC002A4ED8 /* RegistrationController.swift */,
 				1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */,
 				1DE4E5C8270A5CCE004A30CA /* ViewController.swift */,
 				1DE4E5CA270A5CCE004A30CA /* Main.storyboard */,
+				1D98C04B272EE1D8002A4ED8 /* AuthorizationController.swift */,
+				1D98C053272FEE38002A4ED8 /* CustomTextField.swift */,
+				1D98C0572731492E002A4ED8 /* PickerTextField.swift */,
+				1D98C0552731479C002A4ED8 /* SecureTextField.swift */,
 				1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */,
 				1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */,
 				1DE4E5D2270A5CD0004A30CA /* Info.plist */,
@@ -137,9 +152,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D98C0562731479C002A4ED8 /* SecureTextField.swift in Sources */,
+				1D98C04C272EE1D8002A4ED8 /* AuthorizationController.swift in Sources */,
 				1DE4E5C9270A5CCE004A30CA /* ViewController.swift in Sources */,
+				1D98C054272FEE38002A4ED8 /* CustomTextField.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
+				1D98C052272F13EC002A4ED8 /* RegistrationController.swift in Sources */,
+				1D98C0582731492E002A4ED8 /* PickerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

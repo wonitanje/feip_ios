@@ -28,7 +28,6 @@ class ActivityCellController: UITableViewCell {
         distanceLabel.text = model.distance
         durationLabel.text = model.duration
         typeIcon.image = model.icon
-        typeIcon.image = UIImage(systemName: "bicycle.circle.fill")
         typeLabel.text = model.type
         timeAgoLabel.text = model.timeAgo
     }

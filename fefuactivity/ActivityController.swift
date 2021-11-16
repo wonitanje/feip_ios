@@ -46,25 +46,27 @@ class ActivityController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        enterEmptyState()
+        checkEmptyState()
 
         activityTableView.dataSource = self
         activityTableView.delegate = self
-        //activityTableView.register(UINib(nibName: "ActivityCellView", bundle: nil), forCellReuseIdentifier: "ActivityTableCell")
     }
     
+    func checkEmptyState() {
+        if (tableData.isEmpty) { // check entries exists at storage
+            return enterEmptyState()
+        }
+        exitEmptyState()
+    }
+
     func enterEmptyState() {
         emptyStateView.isHidden = false
         activityTableView.isHidden = true
     }
-    
+
     func exitEmptyState() {
         emptyStateView.isHidden = true
         activityTableView.isHidden = false
-    }
-
-    @IBAction func startButton(_ sender: Any) {
-        exitEmptyState()
     }
 }
 
@@ -89,7 +91,7 @@ extension ActivityController: UITableViewDataSource, UITableViewDelegate {
         let activityData = self.tableData[indexPath.section].activities[indexPath.row]
         
         let reusableCell = activityTableView.dequeueReusableCell(withIdentifier: "ActivityTableCell", for: indexPath)
-        
+
         guard let cell = reusableCell as? ActivityCellController else {
             return UITableViewCell()
         }
@@ -111,6 +113,13 @@ extension ActivityController: UITableViewDataSource, UITableViewDelegate {
         case "ActivityDetailsView":
             let destination = segue.destination as! ActivityDetailsController
             destination.model = self.tableData[self.selectedSection].activities[self.selectedRow]
+            destination.route = [] // route from storage
+            break
+        case "ActivityRouteView":
+            let destination = segue.destination as! ActivityRouteController
+            destination.startRecord()
+            destination.setTitle("Новая активность")
+            break
         default:
             break
         }

@@ -21,6 +21,7 @@
 		1DE4E5CC270A5CCE004A30CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CA270A5CCE004A30CA /* Main.storyboard */; };
 		1DE4E5CE270A5CD0004A30CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */; };
 		1DE4E5D1270A5CD0004A30CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */; };
+		1E207EED2743909A00C9BD79 /* ActivityRouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207EEC2743909A00C9BD79 /* ActivityRouteController.swift */; };
 		1E8E876C272C2CBF008177A9 /* ActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8E876B272C2CBF008177A9 /* ActivityController.swift */; };
 		1E8E8771272CE897008177A9 /* ActivityCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8E876F272CE897008177A9 /* ActivityCellController.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DE4E5D0270A5CD0004A30CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DE4E5D2270A5CD0004A30CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E207EEC2743909A00C9BD79 /* ActivityRouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRouteController.swift; sourceTree = "<group>"; };
 		1E8E876B272C2CBF008177A9 /* ActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityController.swift; sourceTree = "<group>"; };
 		1E8E876F272CE897008177A9 /* ActivityCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 				1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */,
 				1DE4E5C8270A5CCE004A30CA /* ViewController.swift */,
 				1DE4E5CA270A5CCE004A30CA /* Main.storyboard */,
+				1E207EEC2743909A00C9BD79 /* ActivityRouteController.swift */,
 				1D98C04F272F0327002A4ED8 /* ActivityDetailsController.swift */,
 				1D98C04B272EE1D8002A4ED8 /* AuthorizationController.swift */,
 				1D98C053272FEE38002A4ED8 /* CustomTextField.swift */,
@@ -178,6 +181,7 @@
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
 				1D98C052272F13EC002A4ED8 /* RegistrationController.swift in Sources */,
+				1E207EED2743909A00C9BD79 /* ActivityRouteController.swift in Sources */,
 				1D98C04E272EE2DC002A4ED8 /* ProfileController.swift in Sources */,
 				1D98C0582731492E002A4ED8 /* PickerTextField.swift in Sources */,
 			);

@@ -224,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rK3-Em-9VZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3226" y="321"/>
+            <point key="canvasLocation" x="3225" y="-342"/>
         </scene>
         <!--Активности-->
         <scene sceneID="N4F-Vk-yuO">
@@ -354,7 +354,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Старт" cornerStyle="small"/>
                                         <connections>
-                                            <action selector="startButton:" destination="uXC-97-HZh" eventType="touchUpInside" id="8sr-8z-HEn"/>
+                                            <segue destination="0L4-zr-fWw" kind="show" identifier="ActivityRouteView" id="680-BR-5Io"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -395,7 +395,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Fq-sa-F48" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4078" y="-342"/>
+            <point key="canvasLocation" x="4078" y="320"/>
         </scene>
         <!--Активности-->
         <scene sceneID="2GK-5x-wiq">
@@ -416,9 +416,40 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kCp-jp-Sz7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3225" y="-342"/>
+            <point key="canvasLocation" x="3225" y="320"/>
         </scene>
-        <!--Activity Details Controller-->
+        <!--Новая активность-->
+        <scene sceneID="dqC-tD-mqg">
+            <objects>
+                <viewController storyboardIdentifier="ActivityRouteView" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0L4-zr-fWw" customClass="ActivityRouteController" customModule="fefuactivity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ThN-Vo-5K3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iZF-JA-oGc">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tbV-Ds-0Yz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tbV-Ds-0Yz" firstAttribute="bottom" secondItem="iZF-JA-oGc" secondAttribute="bottom" id="GaM-6P-LcC"/>
+                            <constraint firstItem="iZF-JA-oGc" firstAttribute="leading" secondItem="tbV-Ds-0Yz" secondAttribute="leading" id="I1M-y0-RzQ"/>
+                            <constraint firstItem="tbV-Ds-0Yz" firstAttribute="trailing" secondItem="iZF-JA-oGc" secondAttribute="trailing" id="Yhx-gq-jay"/>
+                            <constraint firstItem="iZF-JA-oGc" firstAttribute="top" secondItem="tbV-Ds-0Yz" secondAttribute="top" id="opC-VZ-1Jd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Новая активность" id="Sb1-ot-pkA"/>
+                    <connections>
+                        <outlet property="MapView" destination="iZF-JA-oGc" id="bW9-bO-Q9i"/>
+                        <outlet property="mapView" destination="iZF-JA-oGc" id="biI-Ut-uU5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3NH-Nr-3gd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4502" y="1062"/>
+        </scene>
+        <!--Просмотр активности-->
         <scene sceneID="dwS-8k-1cR">
             <objects>
                 <viewController storyboardIdentifier="ActivityDetailsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Syv-yp-Zio" customClass="ActivityDetailsController" customModule="fefuactivity" customModuleProvider="target" sceneMemberID="viewController">
@@ -515,7 +546,10 @@
                                     <constraint firstAttribute="height" constant="50" id="cXi-B6-n5z"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Старт"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Отобразить на карте"/>
+                                <connections>
+                                    <segue destination="0L4-zr-fWw" kind="show" identifier="ActivityRouteView" id="Od1-os-UHM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c6s-gK-lTs"/>
@@ -530,11 +564,18 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" id="6cj-LC-F0e"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="kCh-hC-Qpj"/>
+                    <navigationItem key="navigationItem" title="Просмотр активности" id="6cj-LC-F0e">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="zTc-tz-LhI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="k4s-MU-6N2">
+                            <color key="tintColor" systemColor="linkColor"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="distanceLabel" destination="vT2-dT-TqW" id="TEK-PG-LDp"/>
                         <outlet property="durationLabel" destination="3yw-ZZ-9bU" id="sQO-jD-SDx"/>
+                        <outlet property="showActivityRoute" destination="gaS-Kw-xM6" id="aPP-70-VxU"/>
                         <outlet property="startStopTime" destination="Q8d-5J-GbK" id="ovt-DN-jUQ"/>
                         <outlet property="timeAgoLabel1" destination="4aX-iO-iB3" id="C2a-wX-kmy"/>
                         <outlet property="timeAgoLabel2" destination="YVK-6q-BLv" id="LUF-wd-3MS"/>
@@ -544,7 +585,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecE-lU-z1w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4891" y="-342"/>
+            <point key="canvasLocation" x="4890" y="320"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Mct-Rl-0Wl">
@@ -694,6 +735,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="OZg-Vh-POC"/>
+        <segue reference="Od1-os-UHM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="LogoBleached" width="66" height="42"/>
@@ -702,6 +744,7 @@
         <image name="PeopleBicycles" width="414" height="389"/>
         <image name="Vectors" width="414" height="267"/>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

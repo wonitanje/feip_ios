@@ -1,4 +1,5 @@
 import UIKit
+import CoreLocation
 
 struct ActivityCellModel {
     let distance: String

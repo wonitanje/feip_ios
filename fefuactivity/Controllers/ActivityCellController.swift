@@ -4,14 +4,24 @@ struct ActivityCellModel {
     let distance: String
     let duration: String
     let type: String
-    let timeAgo: String
-    let icon: UIImage?
-    let startTime: String
-    let stopTime: String
+    let icon: UIImage
+    let startDate: Date
+    let stopDate: Date
+
+    func timeAgo() -> String {
+        return startDate.timeAgoDisplay()
+    }
+    func startTime() -> String {
+        return startDate.clockDisplay()
+    }
+    func stopTime() -> String {
+        return stopDate.clockDisplay()
+    }
 }
 
 class ActivityCellController: UITableViewCell {
 
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var typeIcon: UIImageView!
@@ -20,8 +30,8 @@ class ActivityCellController: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.layer.cornerRadius = 10
+
+        cellView.layer.cornerRadius = 10
     }
 
     func bind(_ model: ActivityCellModel) {
@@ -29,6 +39,6 @@ class ActivityCellController: UITableViewCell {
         durationLabel.text = model.duration
         typeIcon.image = model.icon
         typeLabel.text = model.type
-        timeAgoLabel.text = model.timeAgo
+        timeAgoLabel.text = model.timeAgo()
     }
 }

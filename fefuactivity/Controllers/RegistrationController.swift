@@ -9,7 +9,7 @@ class RegistrationController: UIViewController {
 
     }
 
-    @IBAction func register(_ sender: Any) {
+    @IBAction func registerDidPress(_ sender: Any) {
         performSegue(withIdentifier: "ActivityTabBarControllerView", sender: nil)
     }
 }

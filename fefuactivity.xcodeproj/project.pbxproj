@@ -21,6 +21,12 @@
 		1DE4E5CC270A5CCE004A30CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CA270A5CCE004A30CA /* Main.storyboard */; };
 		1DE4E5CE270A5CD0004A30CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */; };
 		1DE4E5D1270A5CD0004A30CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */; };
+		1E207EFA2747A3AA00C9BD79 /* ActivityRouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207EF92747A3AA00C9BD79 /* ActivityRouteController.swift */; };
+		1E207EFD2747B03E00C9BD79 /* fefuactivity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E207EFB2747B03E00C9BD79 /* fefuactivity.xcdatamodeld */; };
+		1E207EFF2747B19600C9BD79 /* FEFUCoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207EFE2747B19600C9BD79 /* FEFUCoreDataContainer.swift */; };
+		1E207F022747CDA700C9BD79 /* CDActivity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207F002747CDA700C9BD79 /* CDActivity+CoreDataClass.swift */; };
+		1E207F032747CDA700C9BD79 /* CDActivity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207F012747CDA700C9BD79 /* CDActivity+CoreDataProperties.swift */; };
+		1E207F0D2747EBA700C9BD79 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E207F0C2747EBA700C9BD79 /* Date.swift */; };
 		1E8E876C272C2CBF008177A9 /* ActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8E876B272C2CBF008177A9 /* ActivityController.swift */; };
 		1E8E8771272CE897008177A9 /* ActivityCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8E876F272CE897008177A9 /* ActivityCellController.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +48,12 @@
 		1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DE4E5D0270A5CD0004A30CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DE4E5D2270A5CD0004A30CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E207EF92747A3AA00C9BD79 /* ActivityRouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRouteController.swift; sourceTree = "<group>"; };
+		1E207EFC2747B03E00C9BD79 /* fefuactivity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fefuactivity.xcdatamodel; sourceTree = "<group>"; };
+		1E207EFE2747B19600C9BD79 /* FEFUCoreDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEFUCoreDataContainer.swift; sourceTree = "<group>"; };
+		1E207F002747CDA700C9BD79 /* CDActivity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDActivity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1E207F012747CDA700C9BD79 /* CDActivity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDActivity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1E207F0C2747EBA700C9BD79 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1E8E876B272C2CBF008177A9 /* ActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityController.swift; sourceTree = "<group>"; };
 		1E8E876F272CE897008177A9 /* ActivityCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,25 +88,71 @@
 		1DE4E5C3270A5CCE004A30CA /* fefuactivity */ = {
 			isa = PBXGroup;
 			children = (
-				1E8E876F272CE897008177A9 /* ActivityCellController.swift */,
+				1E207F0B2747EB9000C9BD79 /* Extensions */,
+				1E207F0A2747EB7800C9BD79 /* Components */,
+				1E207F062747E5E500C9BD79 /* Controllers */,
+				1E207F042747CDCA00C9BD79 /* CoreData+Helpers */,
 				1DE4E5C4270A5CCE004A30CA /* AppDelegate.swift */,
-				1D98C051272F13EC002A4ED8 /* RegistrationController.swift */,
 				1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */,
-				1DE4E5C8270A5CCE004A30CA /* ViewController.swift */,
 				1DE4E5CA270A5CCE004A30CA /* Main.storyboard */,
-				1D98C04F272F0327002A4ED8 /* ActivityDetailsController.swift */,
-				1D98C04B272EE1D8002A4ED8 /* AuthorizationController.swift */,
-				1D98C053272FEE38002A4ED8 /* CustomTextField.swift */,
-				1D98C0572731492E002A4ED8 /* PickerTextField.swift */,
-				1D98C0552731479C002A4ED8 /* SecureTextField.swift */,
-				1D98C049272EE139002A4ED8 /* ActivityTabBarController.swift */,
-				1E8E876B272C2CBF008177A9 /* ActivityController.swift */,
-				1D98C04D272EE2DC002A4ED8 /* ProfileController.swift */,
+				1E207EFB2747B03E00C9BD79 /* fefuactivity.xcdatamodeld */,
 				1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */,
 				1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */,
 				1DE4E5D2270A5CD0004A30CA /* Info.plist */,
 			);
 			path = fefuactivity;
+			sourceTree = "<group>";
+		};
+		1E207F042747CDCA00C9BD79 /* CoreData+Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1E207F052747CE0900C9BD79 /* CDActivity */,
+				1E207EFE2747B19600C9BD79 /* FEFUCoreDataContainer.swift */,
+			);
+			path = "CoreData+Helpers";
+			sourceTree = "<group>";
+		};
+		1E207F052747CE0900C9BD79 /* CDActivity */ = {
+			isa = PBXGroup;
+			children = (
+				1E207F002747CDA700C9BD79 /* CDActivity+CoreDataClass.swift */,
+				1E207F012747CDA700C9BD79 /* CDActivity+CoreDataProperties.swift */,
+			);
+			path = CDActivity;
+			sourceTree = "<group>";
+		};
+		1E207F062747E5E500C9BD79 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1E8E876F272CE897008177A9 /* ActivityCellController.swift */,
+				1D98C051272F13EC002A4ED8 /* RegistrationController.swift */,
+				1DE4E5C8270A5CCE004A30CA /* ViewController.swift */,
+				1E207EF92747A3AA00C9BD79 /* ActivityRouteController.swift */,
+				1D98C04F272F0327002A4ED8 /* ActivityDetailsController.swift */,
+				1D98C04B272EE1D8002A4ED8 /* AuthorizationController.swift */,
+				1D98C049272EE139002A4ED8 /* ActivityTabBarController.swift */,
+				1E8E876B272C2CBF008177A9 /* ActivityController.swift */,
+				1D98C04D272EE2DC002A4ED8 /* ProfileController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1E207F0A2747EB7800C9BD79 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1D98C053272FEE38002A4ED8 /* CustomTextField.swift */,
+				1D98C0572731492E002A4ED8 /* PickerTextField.swift */,
+				1D98C0552731479C002A4ED8 /* SecureTextField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1E207F0B2747EB9000C9BD79 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1E207F0C2747EBA700C9BD79 /* Date.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,17 +225,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E207EFA2747A3AA00C9BD79 /* ActivityRouteController.swift in Sources */,
 				1D98C0562731479C002A4ED8 /* SecureTextField.swift in Sources */,
+				1E207EFF2747B19600C9BD79 /* FEFUCoreDataContainer.swift in Sources */,
 				1D98C04C272EE1D8002A4ED8 /* AuthorizationController.swift in Sources */,
 				1E8E876C272C2CBF008177A9 /* ActivityController.swift in Sources */,
+				1E207F032747CDA700C9BD79 /* CDActivity+CoreDataProperties.swift in Sources */,
 				1E8E8771272CE897008177A9 /* ActivityCellController.swift in Sources */,
 				1D98C050272F0327002A4ED8 /* ActivityDetailsController.swift in Sources */,
 				1DE4E5C9270A5CCE004A30CA /* ViewController.swift in Sources */,
 				1D98C054272FEE38002A4ED8 /* CustomTextField.swift in Sources */,
 				1D98C04A272EE139002A4ED8 /* ActivityTabBarController.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
+				1E207F022747CDA700C9BD79 /* CDActivity+CoreDataClass.swift in Sources */,
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
+				1E207EFD2747B03E00C9BD79 /* fefuactivity.xcdatamodeld in Sources */,
 				1D98C052272F13EC002A4ED8 /* RegistrationController.swift in Sources */,
+				1E207F0D2747EBA700C9BD79 /* Date.swift in Sources */,
 				1D98C04E272EE2DC002A4ED8 /* ProfileController.swift in Sources */,
 				1D98C0582731492E002A4ED8 /* PickerTextField.swift in Sources */,
 			);
@@ -383,6 +447,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1E207EFB2747B03E00C9BD79 /* fefuactivity.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1E207EFC2747B03E00C9BD79 /* fefuactivity.xcdatamodel */,
+			);
+			currentVersion = 1E207EFC2747B03E00C9BD79 /* fefuactivity.xcdatamodel */;
+			path = fefuactivity.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1DE4E5B9270A5CCE004A30CA /* Project object */;
 }

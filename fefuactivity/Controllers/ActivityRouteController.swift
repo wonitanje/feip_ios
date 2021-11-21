@@ -178,7 +178,6 @@ extension ActivityRouteController: MKMapViewDelegate {
 
 extension ActivityRouteController: ActivityRouteDelegate {
     func activityDidCreate() {
-        print("\n\n\n\n\n\n\n\n\n\n\nRoute Delegate")
         delegate?.activityDidCreate()
     }
 }

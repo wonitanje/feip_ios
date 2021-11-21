@@ -1,10 +1,3 @@
-//
-//  TabBarController.swift
-//  fefuactivity
-//
-//  Created by wsr5 on 01.11.2021.
-//
-
 import UIKit
 
 class ActivityTabBarController: UITabBarController {

@@ -18,7 +18,8 @@ class ActivityController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        didEnterEmptyState()
+        emptyStateView.isHidden = false
+        activityTableView.isHidden = true
 
         activityTableView.dataSource = self
         activityTableView.delegate = self
@@ -27,7 +28,6 @@ class ActivityController: UIViewController {
     }
 
     private func fetch() {
-        print("\n\n\n\nFetch")
         let context = FEFUCoreDataContainer.instance.context
         let request = CDActivity.fetchRequest()
         
@@ -47,22 +47,12 @@ class ActivityController: UIViewController {
                 return ActivitiesTableModel(date: date, activities: activities)
             }
 
-            print("\n\n\nCount:", activities.count)
-            emptyStateView.isHidden = !tableData.isEmpty
+            activityTableView.reloadData()
             activityTableView.isHidden = tableData.isEmpty
+            emptyStateView.isHidden = !tableData.isEmpty
         } catch {
             print(error)
         }
-    }
-
-    private func didEnterEmptyState() {
-        emptyStateView.isHidden = false
-        activityTableView.isHidden = true
-    }
-
-    private func didExitEmptyState() {
-        emptyStateView.isHidden = true
-        activityTableView.isHidden = false
     }
 
     @IBAction func startActivityDidPressed(_ sender: Any) {
@@ -126,7 +116,6 @@ extension ActivityController: UITableViewDataSource, UITableViewDelegate {
 
 extension ActivityController: ActivityRouteDelegate {
     func activityDidCreate() {
-        print("\n\n\n\n\n\n\n\n\nActivity Delegate")
         fetch()
     }
 }

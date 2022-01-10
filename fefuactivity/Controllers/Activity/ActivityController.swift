@@ -12,8 +12,8 @@ class ActivityController: UIViewController {
 
     private var tableData: [ActivitiesTableModel] = []
 
-    @IBOutlet weak var activityTableView: UITableView!
-    @IBOutlet weak var emptyStateView: UIStackView!
+    @IBOutlet var activityTableView: UITableView!
+    @IBOutlet var emptyStateView: UIStackView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class ActivityController: UIViewController {
 
         activityTableView.dataSource = self
         activityTableView.delegate = self
-        
+
         fetch()
     }
 

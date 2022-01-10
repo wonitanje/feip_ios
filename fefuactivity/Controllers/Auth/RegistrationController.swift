@@ -6,10 +6,11 @@ class RegistrationController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     @IBAction func registerDidPress(_ sender: Any) {
-        performSegue(withIdentifier: "ActivityTabBarControllerView", sender: nil)
+        let vc = UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "Init")
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
 }

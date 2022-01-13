@@ -18,16 +18,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
 
-        let window = UIWindow(windowScene: scene)
-        let vc: UIViewController
-
-        if UserDefaults.standard.string(forKey: "token") != nil {
-            vc = UIStoryboard(name: "Activity", bundle: nil).instantiateInitialViewController()!
-        } else {
-            vc = UIStoryboard(name: "Auth", bundle: nil).instantiateInitialViewController()!
+        // MARK: - Initial app controller
+        print(UserDefaults.standard.string(forKey: "token") as Any)
+        UserService.profile() { user in
+            DispatchQueue.main.async {
+                let vc = MainController().initializeViewController()
+                self.initializeWindowController(scene, viewController: vc)
+            }
+        } reject: { _ in
+            DispatchQueue.main.async {
+                let vc = AuthController().initializeViewController()
+                self.initializeWindowController(scene, viewController: vc)
+            }
         }
+    }
 
-        window.rootViewController = vc
+    private func initializeWindowController(_ scene: UIWindowScene, viewController: UIViewController) {
+        let window = UIWindow(windowScene: scene)
+
+        window.rootViewController = viewController
         self.window = window
 
         window.makeKeyAndVisible()

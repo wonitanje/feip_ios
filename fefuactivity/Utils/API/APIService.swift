@@ -6,14 +6,33 @@ class APIService {
     static let decoder: JSONDecoder = ({
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
+        decoder.dateDecodingStrategy = .custom { decoder in
+
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+
+            let dateFormatter = ISO8601DateFormatter()
+            guard let date = dateFormatter.date(from: dateString) else {
+                throw DecodingError.dataCorruptedError(in: container,
+                    debugDescription: "Cannot decode date string \(dateString)")
+            }
+            
+            return date
+        }
+
         return decoder
     })()
     static let encoder: JSONEncoder = ({
-        let decoder = JSONEncoder()
-        decoder.keyEncodingStrategy = .convertToSnakeCase
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
 
-        return decoder
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        encoder.dateEncodingStrategy = .formatted(dateFormatter)
+
+        return encoder
     })()
     
     static func createRequest(_ url: URL) -> URLRequest {
@@ -25,24 +44,29 @@ class APIService {
 
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
+
         return request
     }
 
-    static func postRequest(url: URL, body: Data) -> URLRequest {
+    static func postRequest(url: URL, data: Data? = nil) -> URLRequest {
         var request = self.createRequest(url)
 
         request.httpMethod = "POST"
-        request.httpBody = body
+        request.httpBody = data
 
         return request
     }
 
-    static func getRequest(url: URL) -> URLRequest {
+    static func getRequest(url: URL, data: Data? = nil) -> URLRequest {
         var request = self.createRequest(url)
 
         request.httpMethod = "GET"
+        request.httpBody = data
 
         return request
+    }
+    
+    static func errorMessage(error: ErrorModel) -> String {
+        return error.message
     }
 }

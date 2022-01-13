@@ -65,7 +65,6 @@ class UserService: APIService {
             case 200:
                 do {
                     let activities = try super.decoder.decode(ActivitiesResponseModel.self, from: data)
-                    print(activities)
                     if (activities.items.count > 0) {
                         resolve(activities)
                     } else {
@@ -101,12 +100,8 @@ class UserService: APIService {
         let reqData: Data
         do {
             reqData = try encoder.encode(data)
-            if let JSONString = String(data: reqData, encoding: .utf8) {
-                print(JSONString)
-            }
-//            print(reqData.startsAt)
         } catch {
-            print(error)
+            print("Encode error: \(error)")
             return
         }
 
@@ -120,13 +115,11 @@ class UserService: APIService {
                 return
             }
 
-            print(res.statusCode)
             switch res.statusCode {
             case 201:
                 do {
                     let activities = try super.decoder.decode(ActivitiesResponseModel.self, from: data)
                     
-                    print(activities)
                     resolve(activities)
                 } catch let e {
                     print("Decode error: \(e)")

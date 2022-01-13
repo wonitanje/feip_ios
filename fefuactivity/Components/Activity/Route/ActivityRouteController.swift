@@ -6,21 +6,28 @@ class ActivityRouteController: UIViewController {
 
     // MARK: - Public vars
     weak var delegate: ActivityRouteDelegate?
-    
+
     // MARK: - Private vars
     private var latitude: Double = 500
     private var longitude: Double = 500
     private var deviceLocationIdentifier: String = "DeviceLocationActive"
-    private var routingStarted: Bool = false
 
     private var activityCollectionData: [ActivityCollectionCellModel] = []
     private var activityType: ActivityCollectionCellModel?
     private var previousRoute: MKOverlay?
+    private var partialDuration: TimeInterval = TimeInterval()
     private var timer: Timer = Timer()
+    private var timerStart: Date?
+
     private var startDate: Date = Date()
     private var distance: CLLocationDistance = CLLocationDistance() {
         didSet {
             distanceLabel.text = String(format: "%.2f км", distance / 1000)
+        }
+    }
+    private var duration: TimeInterval = TimeInterval() {
+        didSet {
+            
         }
     }
 
@@ -38,9 +45,6 @@ class ActivityRouteController: UIViewController {
                 
                 mapView.setRegion(region, animated: true)
 
-                guard routingStarted else {
-                    return
-                }
                 deviceRoute.append(deviceLocation)
                 if oldValue != nil {
                     distance += deviceLocation.distance(from: oldValue!)
@@ -54,14 +58,21 @@ class ActivityRouteController: UIViewController {
                 $0.coordinate
             }
             
+            if let removeRoute: MKOverlay = previousRoute, !deviceRoute.isEmpty {
+                mapView.removeOverlay(removeRoute as MKOverlay)
+                previousRoute = nil
+            }
+            
+            if deviceRoute.isEmpty {
+                previousRoute = nil
+            }
+            
             let route = MKPolyline(coordinates: coordinates, count: coordinates.count)
             route.title = "Ваш маршрут"
-
-            if let removeRoute: MKOverlay = previousRoute {
-                mapView.removeOverlay(removeRoute)
-            }
-            mapView.addOverlay(route)
+  
             previousRoute = route
+
+            mapView.addOverlay(route)
         }
     }
 
@@ -72,7 +83,12 @@ class ActivityRouteController: UIViewController {
             mapView.showsUserLocation = true
         }
     }
-    @IBOutlet weak var typesCollection: UICollectionView!
+    @IBOutlet weak var typesCollection: UICollectionView! {
+        didSet {
+            self.typesCollection.delegate = self
+            self.typesCollection.dataSource = self
+        }
+    }
     @IBOutlet weak var startView: UIView! {
         didSet {
             proccessView.layer.cornerRadius = 25
@@ -86,7 +102,8 @@ class ActivityRouteController: UIViewController {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
-
+    @IBOutlet weak var toggleButton: UIButton!
+    
     // MARK: - Mapping
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +114,8 @@ class ActivityRouteController: UIViewController {
 
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
 
         loadTypes()
 
@@ -111,7 +129,15 @@ class ActivityRouteController: UIViewController {
     @IBAction func stopDidPress(_ sender: Any) {
         activityDidStop()
     }
-    @IBAction func toggleDidPress(_ sender: Any) {
+    @IBAction func toggleDidPress(_ sender: UIButton) {
+        if (sender.isSelected) {
+            activityDidResume()
+            sender.setBackgroundImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
+        } else {
+            activityDidPause()
+            sender.setBackgroundImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+        }
+        sender.isSelected.toggle()
     }
     
     
@@ -121,9 +147,7 @@ class ActivityRouteController: UIViewController {
         ActivityService.types() { types in
             DispatchQueue.main.async {
                 self.activityCollectionData = types
-//                self.typesCollection.reloadData()
-                self.typesCollection.delegate = self
-                self.typesCollection.dataSource = self
+                self.typesCollection.reloadData()
             }
         } reject: { err in
             print(err)
@@ -136,14 +160,28 @@ class ActivityRouteController: UIViewController {
     private func displayProccessView() {
         startView.isHidden = true
         proccessView.isHidden = false
-        
-//        print(activityType?.name ?? "imya")
-//        print(activityType)
         typeLabel.text = activityType?.name
     }
 
+    private func activityDidPause() {
+        locationManager.stopUpdatingLocation()
+        deviceRoute = []
+        deviceLocation = nil
+
+        duration += partialDuration
+        partialDuration = TimeInterval()
+        timer.invalidate()
+    }
+
+    private func activityDidResume() {
+        locationManager.startUpdatingLocation()
+
+        timerStart = Date()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
     private func activityDidStart() {
-        routingStarted = true
+        locationManager.startUpdatingLocation()
+
         timer = Timer.scheduledTimer(timeInterval: 1.0,
                                      target: self,
                                      selector: #selector(updateTimer),
@@ -152,13 +190,13 @@ class ActivityRouteController: UIViewController {
         timer.tolerance = 0.1
 
         startDate = Date()
+        timerStart = Date()
 
         displayProccessView()
     }
 
     private func activityDidStop() {
         locationManager.stopUpdatingLocation()
-        routingStarted = false
 
         timer.invalidate()
 
@@ -183,22 +221,20 @@ class ActivityRouteController: UIViewController {
             LocationModel(lat: $0.coordinate.latitude, lon: $0.coordinate.longitude)
         })
 
-        UserService.saveActivity(data) { activity in
-            print("\n\n\n new Activity: ", activity)
-        } reject: { err in
-            print("error", err as Any)
-        }
+        UserService.saveActivity(data) { activity in } reject: { err in }
     }
 
     // MARK: - Timer
     @objc func updateTimer() {
-        let duration = Date().timeIntervalSince(startDate)
+        let currentTime = Date().timeIntervalSince(timerStart!)
+
+        partialDuration = currentTime
 
         let timeFormatter = DateComponentsFormatter()
         timeFormatter.allowedUnits = [.hour, .minute, .second]
         timeFormatter.zeroFormattingBehavior = .pad
 
-        durationLabel.text = timeFormatter.string(from: duration)
+        durationLabel.text = timeFormatter.string(from: currentTime + duration)
     }
 
     // MARK: - Public funcs
@@ -253,7 +289,6 @@ extension ActivityRouteController: MKMapViewDelegate {
 // MARK: - ActivityRoute Delegate
 extension ActivityRouteController: ActivityRouteDelegate {
     func activityDidCreate() {
-        print("\n\n\nDid create\n\n")
         delegate?.activityDidCreate()
     }
 }
@@ -262,7 +297,6 @@ extension ActivityRouteController: ActivityRouteDelegate {
 extension ActivityRouteController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Count: ", activityCollectionData.count)
         return activityCollectionData.count
     }
     

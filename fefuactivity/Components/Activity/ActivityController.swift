@@ -79,13 +79,11 @@ class ActivityController: UIViewController {
 
     private func fetchUserActivities() {
         UserService.activities() { activities in
-            print(activities)
             DispatchQueue.main.async {
                 self.fillTable(selfActivities: activities)
                 self.reloadTable()
             }
         } reject: { err in
-            print(err as Any)
             DispatchQueue.main.async {
                 self.fetchLocalActivities()
             }
@@ -94,11 +92,9 @@ class ActivityController: UIViewController {
     
     private func fetchSocialActivities() {
         ActivityService.activities { activities in
-            print(activities)
             self.fillTable(socialActivities: activities)
             self.reloadTable()
         } reject: { err in
-            print(err!)
             DispatchQueue.main.async {
                 self.segmentControlView.selectedSegmentIndex = 0
             }
@@ -173,7 +169,6 @@ class ActivityController: UIViewController {
 
     @IBAction func segmentControlDidChange(_ sender: Any) {
         activitiesGroup = segmentControlView.selectedSegmentIndex
-        print("group change: ", activitiesGroup)
     }
     
     // MARK: - Public funcs

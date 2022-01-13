@@ -33,9 +33,7 @@ class RegistrationController: UIViewController {
             let reqBody = try AuthService.encoder.encode(data)
             AuthService.register(reqBody) { user in
                 DispatchQueue.main.async {
-                    print(user.token)
                     UserDefaults.standard.set(user.token, forKey: "token")
-                    print(UserDefaults.standard.string(forKey: "token")!)
 
                     let vc = MainController().initializeViewController()
                     self.present(vc, animated: true, completion: nil)

@@ -21,7 +21,6 @@ class AuthService: APIService {
             guard let res = response as? HTTPURLResponse else {
                 return
             }
-            print(res.statusCode)
 
             switch res.statusCode {
             case 201:
@@ -65,7 +64,6 @@ class AuthService: APIService {
             guard let res = response as? HTTPURLResponse else {
                 return
             }
-            print(res.statusCode)
 
             switch res.statusCode {
             case 200:
@@ -108,7 +106,6 @@ class AuthService: APIService {
             guard let res = response as? HTTPURLResponse else {
                 return
             }
-            print(res.statusCode)
 
             switch res.statusCode {
             case 200:

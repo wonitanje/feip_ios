@@ -1,12 +1,13 @@
 import UIKit
 
-class PickerTextField: CustomTextField {
+class GenderPickerTextField: CustomTextField {
+    
+    var code: Int = 0
 
     private let genders: [String] = ["Мужской", "Женский"]
+    private let pickerIndicator = UIButton(type: .custom)
+    private let genderPickerView = UIPickerView()
 
-    let pickerIndicator = UIButton(type: .custom)
-    let genderPickerView = UIPickerView()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -26,14 +27,14 @@ class PickerTextField: CustomTextField {
         self.inputView = genderPickerView
         
         pickerIndicator.setImage(UIImage(named: "RightArrow"), for: .normal)
-        pickerIndicator.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        pickerIndicator.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         rightView = pickerIndicator
         rightViewMode = .always
     }
 }
 
-extension PickerTextField: UIPickerViewDataSource, UIPickerViewDelegate {
+extension GenderPickerTextField: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -48,6 +49,7 @@ extension PickerTextField: UIPickerViewDataSource, UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.text = genders[row]
+        self.code = row
         self.resignFirstResponder()
     }
 }

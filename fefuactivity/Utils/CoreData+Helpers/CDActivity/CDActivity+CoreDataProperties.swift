@@ -8,7 +8,6 @@ extension CDActivity {
         return NSFetchRequest<CDActivity>(entityName: "CDActivity")
     }
 
-    @NSManaged public var route: [CLLocation]
     @NSManaged public var startDate: Date
     @NSManaged public var stopDate: Date
     @NSManaged public var type: String

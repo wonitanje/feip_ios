@@ -2,8 +2,10 @@ import UIKit
 
 class ActivityDetailsController: UIViewController {
     
-    var model: ActivityCellModel!
+    // MARK: - Public vars
+    var model: ActivityTableCellModel!
 
+    // MARK: - Outlets
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeAgoLabel1: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
@@ -12,6 +14,7 @@ class ActivityDetailsController: UIViewController {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var timeAgoLabel2: UILabel!
 
+    // MARK: - Mapping
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,5 +27,14 @@ class ActivityDetailsController: UIViewController {
         startStopTime.text =  "Старт: \(model.startTime()) • Финиш: \(model.stopTime())"
         typeLabel.text = model.type
         typeIcon.image = model.icon
+    }
+
+    // MARK: - Public funcs
+    func initializeViewController(_ model: ActivityTableCellModel, presentStyle: UIModalPresentationStyle = .fullScreen) -> ActivityDetailsController {
+        let vc = super.initializeViewController("ActivityDetails", presentStyle) as! ActivityDetailsController
+
+        vc.model = model
+
+        return vc
     }
 }

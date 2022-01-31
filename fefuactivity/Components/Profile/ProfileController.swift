@@ -20,7 +20,10 @@ class ProfileController: UITableViewController {
     @IBOutlet var loginLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var genderLabel: UILabel!
-
+    @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var durationLabel: UILabel!
+    @IBOutlet var chartsView: ProfileCharts!
+    
     // MARK: - Mapping
     override func viewWillAppear(_ animated: Bool) {
         UserService.profile { user in
@@ -33,8 +36,10 @@ class ProfileController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "Профиль"
+
+        chartsView.initCharts()
+        durationLabel.text = chartsView.duration.stringFormat()
+        distanceLabel.text = String(format: "%.2f", chartsView.distance / 1000) + " км"
     }
 
     // MARK: - Actions

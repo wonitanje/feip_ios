@@ -1,4 +1,5 @@
 import UIKit
+import CoreLocation
 
 class ActivityController: UIViewController {
 
@@ -108,8 +109,8 @@ class ActivityController: UIViewController {
                 let duration = activity.endsAt.timeIntervalSinceReferenceDate - activity.startsAt.timeIntervalSinceReferenceDate
                 let distance = activity.geoTrack.distance(from: 0, to: activity.geoTrack.count)
 
-                return ActivityTableCellModel(distance: String(distance),
-                                              duration: String(duration),
+                return ActivityTableCellModel(distance: Double(distance),
+                                              duration: duration,
                                               type: activity.activityType.name,
                                               icon: image,
                                               startDate: activity.startsAt,
@@ -130,10 +131,22 @@ class ActivityController: UIViewController {
             let socialActivities: [ActivityTableCellModel] = socialActivities.items.map { activity in
                 let image = UIImage(systemName: "bicycle.circle.fill") ?? UIImage()
                 let duration = activity.endsAt.timeIntervalSinceReferenceDate - activity.startsAt.timeIntervalSinceReferenceDate
-                let distance = activity.geoTrack.distance(from: 0, to: activity.geoTrack.count)
+                
+                var prevLocation: CLLocation? = nil
+                let distance = activity.geoTrack.reduce(Double(0), { distance, point in
+                    let location = CLLocation(latitude: point.lat, longitude: point.lon)
+                    
+                    var res = distance
+                    if prevLocation != nil {
+                        res += location.distance(from: prevLocation!)
+                    }
+                    prevLocation = location
 
-                return ActivityTableCellModel(distance: String(distance),
-                                              duration: String(duration),
+                    return res
+                })
+
+                return ActivityTableCellModel(distance: Double(distance),
+                                              duration: duration,
                                               type: activity.activityType.name,
                                               icon: image,
                                               startDate: activity.startsAt,

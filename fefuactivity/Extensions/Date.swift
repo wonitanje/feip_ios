@@ -1,6 +1,14 @@
 import Foundation
 
 extension Date {
+    func days(_ date: Date = Date()) -> Int? {
+        return Calendar.current.dateComponents([.day], from: self, to: date).day
+    }
+    
+    func shift(unit: Calendar.Component, value: Int) -> Date? {
+        return Calendar.current.date(byAdding: unit, value: value, to: self)
+    }
+    
     func timeAgoDisplay() -> String {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full

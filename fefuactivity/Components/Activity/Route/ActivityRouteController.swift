@@ -25,11 +25,7 @@ class ActivityRouteController: UIViewController {
             distanceLabel.text = String(format: "%.2f км", distance / 1000)
         }
     }
-    private var duration: TimeInterval = TimeInterval() {
-        didSet {
-            
-        }
-    }
+    private var duration: TimeInterval = TimeInterval()
 
     private let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -108,18 +104,24 @@ class ActivityRouteController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Новая активность"
         self.tabBarController?.tabBar.isHidden = true
         proccessView.isHidden = true
 
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
 
         loadTypes()
 
         displayStartView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - Actions
@@ -210,8 +212,8 @@ class ActivityRouteController: UIViewController {
     private func saveActivity() {
         let coreData = FEFUCoreDataContainer.instance
         let activity = CDActivity(context: coreData.context)
-        activity.duration = durationLabel.text!
-        activity.distance = distanceLabel.text!
+        activity.duration = duration + partialDuration
+        activity.distance = distance
         activity.startDate = startDate
         activity.stopDate = Date()
         activity.type = activityType?.name ?? ""
@@ -226,15 +228,13 @@ class ActivityRouteController: UIViewController {
 
     // MARK: - Timer
     @objc func updateTimer() {
-        let currentTime = Date().timeIntervalSince(timerStart!)
-
-        partialDuration = currentTime
+        partialDuration = Date().timeIntervalSince(timerStart!)
 
         let timeFormatter = DateComponentsFormatter()
         timeFormatter.allowedUnits = [.hour, .minute, .second]
         timeFormatter.zeroFormattingBehavior = .pad
 
-        durationLabel.text = timeFormatter.string(from: currentTime + duration)
+        durationLabel.text = timeFormatter.string(from: partialDuration + duration)
     }
 
     // MARK: - Public funcs

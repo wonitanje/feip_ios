@@ -1,8 +1,8 @@
 import UIKit
 
 struct ActivityTableCellModel {
-    let distance: String
-    let duration: String
+    let distance: Double
+    let duration: Double
     let type: String
     let icon: UIImage
     let startDate: Date
@@ -17,5 +17,11 @@ struct ActivityTableCellModel {
     }
     func stopTime() -> String {
         return stopDate.clockDisplay()
+    }
+    func formattedDistance() -> String {
+        return String(format: "%.2f", distance / 1000) + " км"
+    }
+    func formattedDuration() -> String {
+        return duration.stringFormat()
     }
 }

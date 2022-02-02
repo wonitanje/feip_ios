@@ -20,9 +20,9 @@ class ActivityTableCellController: UITableViewCell {
 
     // MARK: - Public funcs
     func bind(_ model: ActivityTableCellModel) {
-        distanceLabel.text = model.distance
+        distanceLabel.text = model.formattedDistance()
         nameLabel.text = model.name.count != 0 ? "@\(model.name)" : ""
-        durationLabel.text = model.duration
+        durationLabel.text = model.formattedDuration()
         typeIcon.image = model.icon
         typeLabel.text = model.type
         timeAgoLabel.text = model.timeAgo()
